@@ -1,4 +1,8 @@
-const path = require('path')
-const myPath = '/media/asif/Programming/nodeJs/intro_nodeJs/people.js'
-console.log(path.dirname(myPath));
-console.log(path.parse(myPath));
+const fs = require('fs')
+fs.writeFileSync('myfile.txt',"hello programmers ")
+fs.appendFileSync('myfile.txt',"how are you?")
+ fs.readFile("myfile.txt",(err,data)=>{
+    console.log(data.toString());
+
+}) //we will get buffer
+console.log('hello');
