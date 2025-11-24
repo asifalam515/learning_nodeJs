@@ -1,8 +1,35 @@
-const fs = require('fs')
-fs.writeFileSync('myfile.txt',"hello programmers ")
-fs.appendFileSync('myfile.txt',"how are you?")
- fs.readFile("myfile.txt",(err,data)=>{
-    console.log(data.toString());
+const http = require('http')
 
-}) //we will get buffer
-console.log('hello');
+const server = http.createServer((req,res)=>{
+    if(req.url ==='/'){
+   res.write(`
+<html> 
+<head>
+  <title>Form</title>
+</head>
+<body>
+  <form method="post" action="/process">
+    <textarea name="message"></textarea>
+  </form>
+</body>
+</html>
+`);
+
+    res.end()
+    }
+    else if(req.url ==='/process' && req.method ==='POST'){
+        console.log(req.data);
+        res.write("this is about us page")
+        res.end()
+    }
+    else{
+        res.write("Not Found")
+        res.end()
+    }
+
+
+})
+
+
+server.listen(3000)
+console.log("listening on port 3000");
